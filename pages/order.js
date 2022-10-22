@@ -55,19 +55,7 @@ const Order = () => {
                                 <h2>${item.price}</h2>
                             </div>
                             <div className="flex flex-row justify-end pt-2">
-                                {cart.find((i) => i.id == item.id) ? (<>
-                                    <IconButton onClick={() => {
-                                        setCart(cart.map((i) => {
-                                            if(i.id == item.id) {
-                                                return {
-                                                    ...i,
-                                                    quantity: i.quantity + 1,
-                                                }
-                                            }
-                                            return i;
-                                        }));
-                                    }}><Add/></IconButton>
-                                    <p>{cart.find((i) => i.id == item.id).quantity}</p>
+                                {cart.find((i) => i.id == item.id) ? (<div className="flex flex-row align-middle">
                                     <IconButton onClick={() => {
                                         setCart(cart.map((i) => {
                                             if(i.id == item.id) {
@@ -79,10 +67,22 @@ const Order = () => {
                                             return i;
                                         }).filter((i) => i.quantity > 0));
                                     }}><Remove/></IconButton>
+                                    <p className="self-center font-semibold">{cart.find((i) => i.id == item.id).quantity}</p>
+                                    <IconButton onClick={() => {
+                                        setCart(cart.map((i) => {
+                                            if(i.id == item.id) {
+                                                return {
+                                                    ...i,
+                                                    quantity: i.quantity + 1,
+                                                }
+                                            }
+                                            return i;
+                                        }));
+                                    }}><Add/></IconButton>
                                     <Button variant="outlined" color="error" onClick={() => setCart(cart.filter((i) => i.id !== item.id))}>
                                         Remove from cart
                                     </Button>
-                                </>) : (
+                                </div>) : (
                                     <Button variant="contained" onClick={() => setCart([...cart, { id: item.id, quantity: 1 }])}>
                                         Add to cart
                                     </Button>

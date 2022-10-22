@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
 
-const client = new PocketBase('http://pb.chibimello.com:8090');
+const client = new PocketBase('https://pb.chibimello.com');
 
 client.users.authViaEmail('testing@cacat.com', '12345678');
 
