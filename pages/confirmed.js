@@ -26,7 +26,7 @@ const Confirmation = () => {
 
     const SVG = useMemo(() => {
         if(!order.tagid) return '';
-        var dictionary = new AR.Dictionary('ARUCO');
+        var dictionary = new AR.Dictionary('ARUCO_MIP_36h12');
         var SVG = dictionary.generateSVG(order.tagid);
         return SVG;
     }, [order.tagid]);
