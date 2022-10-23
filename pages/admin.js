@@ -24,7 +24,7 @@ const Admin = () => {
         })();
         client.realtime.subscribe('orders', function (e) {
             console.log(e);
-            if(e.action == 'update' && e.record.status == 'confirmed') {
+            if(e.action == 'update' && (e.record.status == 'confirmed' || e.record.status == 'seated')) {
                 setOrders((orders) => {
                     const newOrders = [...orders];
                     const index = newOrders.findIndex((o) => o.id == e.record.id);
