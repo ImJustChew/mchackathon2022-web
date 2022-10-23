@@ -46,13 +46,17 @@ const Confirmation = () => {
                 <h1 className="text-2xl font-semibold">Your order has been placed!</h1>
                 <p>Order ID: {order.id}</p>
                 <p>Order Status: {order.status}</p>
-                {order.status == 'pending' ?<div className="grid place-items-center text-center">
-                    <h1 className="text-2xl font-semibold py-8">Please wait while the server confirms your request~</h1>
-                </div>:
-                <div>
-                    <div dangerouslySetInnerHTML={{ __html: SVG }}></div>
-                    <p className="font-bold text-3xl py-4 text-center text-teal-700">Place this somewhere visible.</p>
-                </div>}
+                {order.status != 'completed' && <>
+                    {order.status == 'pending' ?<div className="grid place-items-center text-center">
+                        <h1 className="text-2xl font-semibold py-8">Please wait while the server confirms your request~</h1>
+                    </div>:
+                    <div>
+                        <div dangerouslySetInnerHTML={{ __html: SVG }}></div>
+                        {order.status == 'seated' ?
+                        <p className="font-bold text-3xl py-4 text-center text-green-700">We found your seat! Please wait while we prepare your food.</p>:
+                        <p className="font-bold text-3xl py-4 text-center text-teal-700">Place this somewhere visible.</p>}
+                    </div>}
+                </>}
             </div>
         </div>
     );

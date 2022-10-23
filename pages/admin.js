@@ -18,7 +18,7 @@ const Admin = () => {
     useEffect(() => {
         (async () => {
             const records = await client.records.getFullList('orders', 200, {
-                filter: 'status = "confirmed"'
+                filter: 'status = "successful" || status = "seated"'
             }).catch(console.error);
             if(records)setOrders(records);            
         })();
